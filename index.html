@@ -117,3 +117,33 @@ const pages = {
     `
   }
 };
+  function openPage(page) {
+  const data = pages[page];
+  if (!data) return;
+
+  document.getElementById("details").innerHTML =
+    `<div class="panel">
+      <h2>${data.title}</h2>
+      ${data.text}
+      <button class="back" onclick="goHome()">← Back to Home</button>
+    </div>`;
+
+  document.getElementById("grid").style.display = "none";
+  document.getElementById("details").style.display = "block";
+}
+
+function goHome() {
+  document.getElementById("details").innerHTML = "";
+  document.getElementById("details").style.display = "none";
+  document.getElementById("grid").style.display = "grid";
+}
+
+function searchCards() {
+  const q = document.getElementById("search").value.toLowerCase();
+
+  document.querySelectorAll(".card").forEach(card => {
+    card.style.display = card.innerText.toLowerCase().includes(q)
+      ? "block"
+      : "none";
+  });
+    }
